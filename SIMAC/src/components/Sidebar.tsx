@@ -18,6 +18,16 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <NavLink
+                            to="/horometros"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Control de Horómetros
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to="/equipos"
                             className={({ isActive }) =>
                                 isActive ? `${styles.link} ${styles.active}` : styles.link
@@ -28,12 +38,12 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/horometros"
+                            to="/repuestos"
                             className={({ isActive }) =>
                                 isActive ? `${styles.link} ${styles.active}` : styles.link
                             }
                         >
-                            Control de Horómetros
+                            Repuestos
                         </NavLink>
                     </li>
                     <li>

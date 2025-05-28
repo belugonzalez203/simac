@@ -1,23 +1,21 @@
 import styles from '../styles/TechnicianView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
-const mockTechnicians = [
-    { Código: 1, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Molienda de esmaltes' },
-    { Código: 2, Nombre: 'Damian Flores', Contacto: '74185236', Área: 'Molienda de esmaltes' },
-    { Código: 3, Nombre: 'Pedro Jimenez', Contacto: '74185236', Área: 'Producción' },
-    { Código: 4, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Producción' },
-    { Código: 5, Nombre: 'Pedro Jimenez', Contacto: '74185236', Área: 'Seguridad industrial' },
-    { Código: 6, Nombre: 'Damian Flores', Contacto: '74185236', Área: 'Equipos' },
-    { Código: 7, Nombre: 'Pedro Jimenez', Contacto: '74185236', Área: 'Barbotina' },
-    { Código: 8, Nombre: 'Pedro Jimenez', Contacto: '74185236', Área: 'Barbotina' },
-    { Código: 9, Nombre: 'Pedro Jimenez', Contacto: '74185236', Área: 'Comercialización' },
-    { Código: 10, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Comercialización' },
+const mockAreas = [
+    { Código: "BARB", Área: "Molienda de barbotina", Responsable: "Julio Suarez", Contacto: "78945612" },
+    { Código: "COM", Área: "Comercialización", Responsable: "Mario Perez", Contacto: "78945612" },
+    { Código: "PROD", Área: "Producción", Responsable: "Ramiro Veizaga", Contacto: "78945612" },
+    { Código: "ESM", Área: "Molienda de esmaltes", Responsable: "Eduardo Ferrer", Contacto: "78945612" },
+    { Código: "EQP", Área: "Renovación de equipos", Responsable: "Pedro Molina", Contacto: "78945612"},
+    { Código: "PRD-2", Área: "Producción", Responsable: "Lucio Gomez", Contacto: "78945612" },
+    { Código: "COM-EX", Área: "Comercialización", Responsable: "Fernando Sejas", Contacto: "78945612" },
+    { Código: "ESM-2", Área: "Molienda de esmaltes", Responsable: "Ivar Mamani", Contacto: "78945612" },
 ];
 
-const TechnicianView = () => {
+const AreaView = () => {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Técnicos</h2>
+            <h2 className={styles.title}>Áreas</h2>
             <div className={styles.actions}>
                 <button className={styles.createButton}>Crear Nuevo</button>
             </div>
@@ -26,20 +24,20 @@ const TechnicianView = () => {
                     <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Contacto</th>
                         <th>Área</th>
+                        <th>Responsable</th>
+                        <th>Contacto</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {mockTechnicians.map((tech, index) => (
+                    {mockAreas.map((tech, index) => (
                         <tr key={index}>
                             <td>{tech.Código}</td>
-                            <td>{tech.Nombre}</td>
-                            <td>{tech.Contacto}</td>
                             <td>{tech.Área}</td>
+                            <td>{tech.Responsable}</td>
+                            <td>{tech.Contacto}</td>
                             <td className={styles.iconCell}>
                                 <FaEdit className={styles.editIcon} />
                             </td>
@@ -55,4 +53,4 @@ const TechnicianView = () => {
     );
 };
 
-export default TechnicianView;
+export default AreaView;
