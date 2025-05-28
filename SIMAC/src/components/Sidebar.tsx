@@ -1,17 +1,61 @@
-import  { Link } from 'react-router-dom';
+import  { NavLink } from 'react-router-dom';
 import styles from '../styles/Sidebar.module.css';
 
 const Sidebar = () => {
     return (
         <aside className={styles.sidebar}>
-            <h2 className={styles.title}></h2>
-            <nav className={styles.nav}>
-                <ul className={styles.nav}>
-                    <li className={styles.nav}><Link to="/ordenes">Órdenes de Trabajo</Link></li>
-                    <li><Link to="/equipos">Equipos</Link></li>
-                    <li><Link to="/horometros">Control de Horómetros</Link></li>
-                    <li><Link to="/areas">Áreas</Link></li>
-                    <li><Link to="/tecnicos">Técnicos</Link></li>
+            <nav>
+                <ul className={styles.navList}>
+                    <li>
+                        <NavLink
+                            to="/ordenes"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Órdenes de Trabajo
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/equipos"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Equipos
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/horometros"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Control de Horómetros
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/areas"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Áreas
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/tecnicos"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.link} ${styles.active}` : styles.link
+                            }
+                        >
+                            Técnicos
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
         </aside>
