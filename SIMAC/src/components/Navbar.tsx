@@ -8,8 +8,9 @@ interface NavbarProps {
 export const Navbar = ({ username }: NavbarProps) => {
     return (
         <header className={styles.navbar}>
-            <div>
+            <div className={styles.marca}>
                 <img src="/LogoCoboce.png" alt="Coboce Ltda." className={styles.logo} />
+                <h2>SICO</h2>
             </div>
             <div>
                 <div className={styles.userInfo}>

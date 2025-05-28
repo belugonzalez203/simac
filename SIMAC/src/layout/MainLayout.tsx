@@ -10,7 +10,9 @@ interface Props {
 const MainLayout: React.FC<Props> = ({ children }) => {
     return (
         <div className={styles.container}>
-            <Navbar username="José Gutierrez" />
+            <div className={styles.navbar}>
+                <Navbar username="José Gutierrez" />
+            </div>
             <div className={styles.body}>
                 <Sidebar />
                 <main className={styles.main}>
