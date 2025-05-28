@@ -13,8 +13,14 @@
     "windows": [
       {
         "title": "simac",
-        "width": 800,
-        "height": 600
+        "label": "main",
+        "url": "http://localhost:1420",
+        "width": 1400,
+        "height": 900,
+        "resizable": false,
+        "fullscreen": false,
+        "title": "Sistema de Control de Mantenimiento Coboce",
+        "center": true
       }
     ],
     "security": {
