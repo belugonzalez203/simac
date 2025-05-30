@@ -3,6 +3,9 @@ import MainLayout from "./layout/MainLayout.tsx";
 //import Sidebar from './components/Sidebar';
 import TechnicianView from "./views/TechnicianView.tsx";
 import EquipmentView from "./views/EquipmentView.tsx";
+import AreaView from "./views/AreaView.tsx";
+import SparePartsView from "./views/SpareParts.tsx";
+
 
 
 const App = () => {
@@ -11,8 +14,9 @@ const App = () => {
             <Routes>
                 <Route path="/tecnicos" element={<TechnicianView />} />
                 <Route path="/equipos" element={<EquipmentView />} />
-                {/*<Route path="/areas" element={<AreasView />} />
-                <Route path="/ordenes" element={<OrdenesView />} />
+                <Route path="/areas" element={<AreaView />} />
+                <Route path="/repuestos" element={<SparePartsView />} />
+                {/*<Route path="/ordenes" element={<OrdenesView />} />
                 <Route path="/horometros" element={<HorometrosView />} />
                 <Route path="/recursos" element={<RecursosView />} />
                 {/* Ruta por defecto */}
