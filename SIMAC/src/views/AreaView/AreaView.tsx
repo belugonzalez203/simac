@@ -1,5 +1,6 @@
 import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import {useNavigate} from "react-router-dom";
 
 const mockAreas = [
     { Código: "BARB", Área: "Molienda de barbotina", Responsable: "Julio Suarez", Contacto: "78945612" },
@@ -13,11 +14,19 @@ const mockAreas = [
 ];
 
 const AreaView = () => {
+    const navigate = useNavigate();
+
+    const handleCreateClick = () => {
+        navigate('/area/create');
+    };
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>ÁREAS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton}>Crear Nuevo</button>
+                <button className={styles.createButton} onClick={handleCreateClick}>
+                    Crear Nuevo
+                </button>
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>

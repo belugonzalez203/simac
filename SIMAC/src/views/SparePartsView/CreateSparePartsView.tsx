@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import styles from '../../styles/CreateForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const CreateAreaView = () => {
+const CreateSparePartsView = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         codigo: '',
-        area: '',
-        responsable: '',
-        contacto: '',
+        nombre: '',
+        existencia: '',
     });
 
     const [errors, setErrors] = useState({
         codigo: false,
-        area: false,
+        nombre: false,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +23,7 @@ const CreateAreaView = () => {
     const validate = () => {
         const newErrors = {
             codigo: formData.codigo.trim() === '',
-            area: formData.area.trim() === '',
+            nombre: formData.nombre.trim() === '',
         };
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
@@ -40,12 +39,12 @@ const CreateAreaView = () => {
     };
 
     const handleCancel = () => {
-        navigate('/areas');
+        navigate('/repuestos');
     };
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>CREAR ÁREA</h1>
+            <h1 className={styles.title}>CREAR REPUESTO</h1>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.field}>
                     <label>Código<span>*</span></label>
@@ -54,19 +53,14 @@ const CreateAreaView = () => {
                 </div>
 
                 <div className={styles.field}>
-                    <label>Área<span>*</span></label>
-                    <input type="text" name="area" value={formData.area} onChange={handleChange} />
-                    {errors.area && <p className={styles.error}>Este campo es obligatorio</p>}
+                    <label>Nombre<span>*</span></label>
+                    <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} />
+                    {errors.nombre && <p className={styles.error}>Este campo es obligatorio</p>}
                 </div>
 
                 <div className={styles.field}>
-                    <label>Responsable</label>
-                    <input type="text" name="responsable" value={formData.responsable} onChange={handleChange} />
-                </div>
-
-                <div className={styles.field}>
-                    <label>Contacto</label>
-                    <input type="text" name="contacto" value={formData.contacto} onChange={handleChange} />
+                    <label>Existencia</label>
+                    <input type="number" name="existencia" value={formData.existencia} onChange={handleChange} />
                 </div>
 
                 <div className={styles.buttonGroup}>
@@ -78,4 +72,4 @@ const CreateAreaView = () => {
     );
 };
 
-export default CreateAreaView;
+export default CreateSparePartsView;

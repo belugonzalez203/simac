@@ -35,3 +35,20 @@ link:hover {
 .active {
     background-color: #64A48C;
 }
+
+.subLink {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    /** top - right - bottom - left **/
+    padding: 8px 1rem 8px 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.img {
+    height: 15px;
+    padding: 0 10px
+}

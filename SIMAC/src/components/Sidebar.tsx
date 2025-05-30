@@ -37,6 +37,16 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink ///////////////////////////////////////////////////////////////////////////////////////////
+                            to="/equipment/create"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.subLink} ${styles.active}` : styles.subLink
+                            }
+                        >
+                            <img src="/add.png" alt="addNew" className={styles.img} />Nuevo
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink
                             to="/repuestos"
                             className={({ isActive }) =>
@@ -44,6 +54,16 @@ const Sidebar = () => {
                             }
                         >
                             Repuestos
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink ///////////////////////////////////////////////////////////////////////////////////////////
+                            to="/spareParts/create"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.subLink} ${styles.active}` : styles.subLink
+                            }
+                        >
+                            <img src="/add.png" alt="addNew" className={styles.img} />Nuevo
                         </NavLink>
                     </li>
                     <li>
@@ -57,6 +77,16 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink ///////////////////////////////////////////////////////////////////////////////////////////
+                            to="/area/create"
+                            className={({ isActive }) =>
+                                isActive ? `${styles.subLink} ${styles.active}` : styles.subLink
+                            }
+                        >
+                            <img src="/add.png" alt="addNew" className={styles.img} />Nuevo
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink
                             to="/tecnicos"
                             className={({ isActive }) =>
@@ -65,6 +95,16 @@ const Sidebar = () => {
                         >
                             Técnicos
                         </NavLink>
+                        <li>
+                            <NavLink ///////////////////////////////////////////////////////////////////////////////////////////
+                                to="/technician/create"
+                                className={({ isActive }) =>
+                                    isActive ? `${styles.subLink} ${styles.active}` : styles.subLink
+                                }
+                            >
+                                <img src="/add.png" alt="addNew" className={styles.img} />Nuevo
+                            </NavLink>
+                        </li>
                     </li>
                 </ul>
             </nav>

@@ -10,7 +10,7 @@ export const Navbar = ({ username }: NavbarProps) => {
         <header className={styles.navbar}>
             <div className={styles.marca}>
                 <img src="/LogoCoboce.png" alt="Coboce Ltda." className={styles.logo} />
-                <h2>SICO</h2>
+                <h2>SIMAC</h2>
             </div>
             <div>
                 <div className={styles.userInfo}>
