@@ -1,0 +1,134 @@
+.container {
+    margin-left: 220px;
+    padding: 2rem;
+    background-color: #f4f7fa;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+/* Formato general */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Secciones */
+.section {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+
+/* Dos columnas */
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* Una columna completa */
+.gridFull {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+/* Campo estándar */
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldFull {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label */
+label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+label span {
+    color: red;
+    margin-left: 2px;
+}
+
+/* Inputs y textarea */
+input,
+textarea,
+select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Separador */
+.divider {
+    border: none;
+    border-top: 2px solid #666;
+    margin: 0;
+}
+
+/* Mensaje de error */
+.error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* Botones agrupados */
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Botones */
+.saveButton,
+.cancelButton {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.saveButton {
+    background-color: #056c44;
+    color: white;
+}
+
+.cancelButton {
+    background-color: #c72828;
+    color: white;
+}
+
+.saveButton:hover {
+    background-color: #038052;
+}
+
+.cancelButton:hover {
+    background-color: #a51212;
+}
