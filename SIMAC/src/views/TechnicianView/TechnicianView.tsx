@@ -1,5 +1,6 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import {useNavigate} from "react-router-dom";
 
 const mockTechnicians = [
     { Código: 1, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Molienda de esmaltes' },
@@ -15,11 +16,19 @@ const mockTechnicians = [
 ];
 
 const TechnicianView = () => {
+    const navigate = useNavigate();
+
+    const handleCreateClick = () => {
+        navigate('/technician/create');
+    };
+
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Técnicos</h2>
+            <h2 className={styles.title}>TÉCNICOS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton}>Crear Nuevo</button>
+                <button className={styles.createButton} onClick={handleCreateClick}>
+                    Crear Nuevo
+                </button>
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>

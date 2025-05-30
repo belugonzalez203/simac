@@ -1,5 +1,6 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import {useNavigate} from "react-router-dom";
 
 const mockSpareParts = [
     { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
@@ -13,11 +14,19 @@ const mockSpareParts = [
 ];
 
 const SparePartsView = () => {
+    const navigate = useNavigate();
+
+    const handleCreateClick = () => {
+        navigate('/spareParts/create');
+    };
+
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Repuestos</h2>
+            <h2 className={styles.title}>REPUESTOS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton}>Crear Nuevo</button>
+                <button className={styles.createButton} onClick={handleCreateClick}>
+                    Crear Nuevo
+                </button>
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
