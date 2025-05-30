@@ -1,0 +1,83 @@
+.container {
+    margin-left: 220px;
+    padding: 2rem;
+    background-color: #e8edf4;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    gap: 1.5rem;
+    max-width: 600px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+label span {
+    color: red;
+    margin-left: 2px;
+}
+
+input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.saveButton {
+    background-color: #056c44;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cancelButton {
+    background-color: #c72828;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: #038052;
+}
+
+.cancelButton:hover {
+    background-color: #a51212;
+}

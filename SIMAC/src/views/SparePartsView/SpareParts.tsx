@@ -1,4 +1,4 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const mockSpareParts = [
@@ -15,7 +15,7 @@ const mockSpareParts = [
 const SparePartsView = () => {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Repuestos</h2>
+            <h2 className={styles.title}>REPUESTOS</h2>
             <div className={styles.actions}>
                 <button className={styles.createButton}>Crear Nuevo</button>
             </div>

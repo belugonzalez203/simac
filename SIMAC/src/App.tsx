@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from "./layout/MainLayout.tsx";
 //import Sidebar from './components/Sidebar';
-import TechnicianView from "./views/TechnicianView.tsx";
-import EquipmentView from "./views/EquipmentView.tsx";
-import AreaView from "./views/AreaView.tsx";
-import SparePartsView from "./views/SpareParts.tsx";
+import TechnicianView from "./views/TechnicianView/TechnicianView.tsx";
+import EquipmentView from "./views/EquipmentView/EquipmentView.tsx";
+import AreaView from "./views/AreaView/AreaView.tsx";
+import SparePartsView from "./views/SparePartsView/SpareParts.tsx";
+import CreateEquipmentView from "./views/EquipmentView/CreateEquipmentView.tsx";
 
 
 
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/recursos" element={<RecursosView />} />
                 {/* Ruta por defecto */}
                 <Route path="*" element={<TechnicianView />} />
+                <Route path="/equipment/create" element={<CreateEquipmentView />} />
             </Routes>
         </MainLayout>
     );

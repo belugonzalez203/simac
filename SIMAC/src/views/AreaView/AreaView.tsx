@@ -1,4 +1,4 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const mockAreas = [
@@ -15,7 +15,7 @@ const mockAreas = [
 const AreaView = () => {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Áreas</h2>
+            <h2 className={styles.title}>ÁREAS</h2>
             <div className={styles.actions}>
                 <button className={styles.createButton}>Crear Nuevo</button>
             </div>

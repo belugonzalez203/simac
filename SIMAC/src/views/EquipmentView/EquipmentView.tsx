@@ -1,5 +1,6 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import {useNavigate} from "react-router-dom";
 
 const mockEquipment = [
     { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
@@ -12,12 +13,20 @@ const mockEquipment = [
     { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
 ];
 
-const EquipmentView = () => {
+const EquipmentListView = () => {
+    const navigate = useNavigate();
+
+    const handleCreateClick = () => {
+        navigate('/equipment/create');
+    };
+
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Equipos</h2>
+            <h2 className={styles.title}>EQUIPOS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton}>Crear Nuevo</button>
+                <button className={styles.createButton} onClick={handleCreateClick}>
+                    Crear Nuevo
+                </button>
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
@@ -55,4 +64,4 @@ const EquipmentView = () => {
     );
 };
 
-export default EquipmentView;
+export default EquipmentListView;

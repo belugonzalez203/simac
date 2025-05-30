@@ -1,4 +1,4 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const mockTechnicians = [
@@ -17,7 +17,7 @@ const mockTechnicians = [
 const TechnicianView = () => {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Técnicos</h2>
+            <h2 className={styles.title}>TÉCNICOS</h2>
             <div className={styles.actions}>
                 <button className={styles.createButton}>Crear Nuevo</button>
             </div>
