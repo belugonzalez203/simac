@@ -9,7 +9,9 @@ import CreateEquipmentView from "./views/EquipmentView/CreateEquipmentView.tsx";
 import CreateSparePartsView from "./views/SparePartsView/CreateSparePartsView.tsx";
 import CreateAreaView from "./views/AreaView/CreateAreaView.tsx";
 import CreateTechnicianView from "./views/TechnicianView/CreateTechnicianView.tsx";
-import CreateOrderView from "./views/OrderView/CreateOrderView.tsx"
+import CreateOrderView from "./views/OrderView/CreateOrderView.tsx";
+import OrderReceivedView from "./views/OrderView/OrderReceivedView.tsx"
+
 
 const App = () => {
     return (
@@ -29,6 +31,7 @@ const App = () => {
                 <Route path="/spareParts/create" element={<CreateSparePartsView />} />
                 <Route path="/technician/create" element={<CreateTechnicianView />} />
                 <Route path="/order/create" element={<CreateOrderView />} />
+                <Route path="/order/received" element={<OrderReceivedView />} />
             </Routes>
         </MainLayout>
     );

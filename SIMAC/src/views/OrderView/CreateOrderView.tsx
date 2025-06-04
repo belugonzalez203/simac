@@ -1,38 +1,46 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/CreateOrderForm.module.css';
 
 const CreateOrderView: React.FC = () => {
     const navigate = useNavigate();
-    const [form, setForm] = useState({
+    const location = useLocation();
+    type OrderFormData = {
+        nroOrden: string;
+        emisor: string;
+        fechaSolicitud: string;
+        horaSolicitud: string;
+        fechaEntrega: string;
+        tecnico: string;
+        tecnicoId: string;
+        equipo: string;
+        equipoId: string;
+        modeloEquipo: string;
+        areaEquipo: string;
+        tipoMantenimiento: string;
+        claseMantenimiento: string;
+        prioridad: string;
+        trabajoSolicitado: string;
+    };
+
+    const initialData = location.state as Partial<OrderFormData> || {};
+    const [form, setForm] = useState<OrderFormData>({
         nroOrden: '',
-        fechaSolicitud: '',
-        horaSolicitud: '',
-        tecnico: '',
-        contactoTecnico: '',
-        nroOTA: '',
-        nroOTI: '',
-        equipo: '',
+        emisor: '',
+        fechaSolicitud: new Date().toISOString().split('T')[0],
+        horaSolicitud: new Date().toTimeString().slice(0, 5),
+        fechaEntrega: initialData.fechaEntrega || '',
+        tecnico: initialData.tecnico || '',
+        tecnicoId: '',
+        equipo: initialData.equipo || '',
+        equipoId: '',
         modeloEquipo: '',
-        ubicacion: '',
-        area: '',
-        supervisor: '',
-        contactoSupervisor: '',
-        fechaInicio: '',
-        horaInicio: '',
-        prioridad: '',
-        claseMtto: '',
-        tipoMtto: '',
-        fechaFin: '',
-        horaFin: '',
-        descripcionOrden: '',
-        trabajoSolicitado: '',
-        causaFalla: '',
-        analisisFalla: '',
-        detalleTrabajo: '',
-        repuestos: '',
-        personalApoyo: '',
-        observaciones: '',
+        areaEquipo: '',
+        tipoMantenimiento: initialData.tipoMantenimiento || '',
+        claseMantenimiento: initialData.claseMantenimiento || '',
+        prioridad: initialData.prioridad || '',
+        trabajoSolicitado: initialData.trabajoSolicitado || '',
     });
     const [errors, setErrors] = useState<Record<string, boolean>>({});
 
@@ -46,22 +54,9 @@ const CreateOrderView: React.FC = () => {
 
     const validate = () => {
         const required = [
-            'nroOrden',
-            'fechaSolicitud',
-            'horaSolicitud',
             'tecnico',
-            'nroOTA',
             'equipo',
-            'area',
-            'supervisor',
-            'fechaInicio',
-            'horaInicio',
-            'descripcionOrden',
             'trabajoSolicitado',
-            'causaFalla',
-            'analisisFalla',
-            'detalleTrabajo',
-            'repuestos',
         ];
         const newErr: Record<string, boolean> = {};
         required.forEach(k => {
@@ -88,35 +83,12 @@ const CreateOrderView: React.FC = () => {
                     <h2 className={styles.sectionTitle}>Solicitud</h2>
                     <div className={styles.grid2}>
                         <div className={styles.field}>
-                            <label>Nro Orden<span>*</span></label>
+                            <label>Nro Orden</label>
                             <input name="nroOrden" value={form.nroOrden} onChange={handleChange} />
-                            {errors.nroOrden && <p className={styles.error}>Este campo es obligatorio</p>}
                         </div>
                         <div className={styles.field}>
-                            <label>Nro OTA<span>*</span></label>
-                            <input name="nroOTA" value={form.nroOTA} onChange={handleChange} />
-                            {errors.nroOTA && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-
-                        <div className={styles.field}>
-                            <label>Fecha solicitud<span>*</span></label>
-                            <input type="date" name="fechaSolicitud" value={form.fechaSolicitud} onChange={handleChange} />
-                            {errors.fechaSolicitud && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-                        <div className={styles.field}>
-                            <label>Nro OTI</label>
-                            <input name="nroOTI" value={form.nroOTI} onChange={handleChange} />
-                        </div>
-
-                        <div className={styles.field}>
-                            <label>Hora solicitud<span>*</span></label>
-                            <input type="time" name="horaSolicitud" value={form.horaSolicitud} onChange={handleChange} />
-                            {errors.horaSolicitud && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-                        <div className={styles.field}>
-                            <label>Equipo<span>*</span></label>
-                            <input name="equipo" value={form.equipo} onChange={handleChange} />
-                            {errors.equipo && <p className={styles.error}>Este campo es obligatorio</p>}
+                            <label>Emisor</label>
+                            <input name="emisor" value={form.emisor} onChange={handleChange} />
                         </div>
 
                         <div className={styles.field}>
@@ -125,18 +97,25 @@ const CreateOrderView: React.FC = () => {
                             {errors.tecnico && <p className={styles.error}>Este campo es obligatorio</p>}
                         </div>
                         <div className={styles.field}>
-                            <label>Modelo</label>
-                            <input name="modeloEquipo" value={form.modeloEquipo} onChange={handleChange} />
+                            <label>Ficha técnico</label>
+                            <input name="tecnicoId" value={form.tecnicoId} onChange={handleChange} />
                         </div>
 
                         <div className={styles.field}>
-                            <label>Contacto Técnico</label>
-                            <input name="contactoTecnico" value={form.contactoTecnico} onChange={handleChange} />
+                            <label>Fecha solicitud</label>
+                            <input type="date" name="fechaSolicitud" value={form.fechaSolicitud} onChange={handleChange} />
                         </div>
                         <div className={styles.field}>
-                            <label>Ubicación</label>
-                            <input name="ubicacion" value={form.ubicacion} onChange={handleChange} />
+                            <label>Hora solicitud</label>
+                            <input type="time" name="horaSolicitud" value={form.horaSolicitud} onChange={handleChange} />
                         </div>
+
+                        <div className={styles.field}>
+                            <label>Fecha entrega</label>
+                            <input type="date" name="fechaEntrega" value={form.fechaEntrega} onChange={handleChange} />
+                        </div>
+
+                        
                     </div>
                 </section>
 
@@ -147,94 +126,48 @@ const CreateOrderView: React.FC = () => {
                     <h2 className={styles.sectionTitle}>Orden de Trabajo</h2>
                     <div className={styles.grid2}>
                         <div className={styles.field}>
-                            <label>Área<span>*</span></label>
-                            <input name="area" value={form.area} onChange={handleChange} />
-                            {errors.area && <p className={styles.error}>Este campo es obligatorio</p>}
+                            <label>Equipo<span>*</span></label>
+                            <input name="equipo" value={form.equipo} onChange={handleChange} />
+                            {errors.equipo && <p className={styles.error}>Este campo es obligatorio</p>}
                         </div>
+                        <div className={styles.field}>
+                            <label>Codigo<span>*</span></label>
+                            <input name="equipoId" value={form.equipoId} onChange={handleChange} />
+                        </div>
+                        <div className={styles.field}>
+                            <label>Modelo</label>
+                            <input name="modeloEquipo" value={form.modeloEquipo} onChange={handleChange} />
+                        </div>
+                        <div className={styles.field}>
+                            <label>Ubicacion<span>*</span></label>
+                            <input name="areaEquipo" value={form.areaEquipo} onChange={handleChange} />
+                        </div>
+
+                        <div className={styles.field}>
+                            <label>Clase Mantenimiento</label>
+                            <input name="claseMantenimiento" value={form.claseMantenimiento} onChange={handleChange} />
+                        </div>
+
+                        <div className={styles.field}>
+                            <label>Tipo Mantenimiento</label>
+                            <input name="tipoMantenimiento" value={form.tipoMantenimiento} onChange={handleChange} />
+                        </div>
+
                         <div className={styles.field}>
                             <label>Prioridad</label>
                             <input name="prioridad" value={form.prioridad} onChange={handleChange} />
                         </div>
 
-                        <div className={styles.field}>
-                            <label>Supervisor<span>*</span></label>
-                            <input name="supervisor" value={form.supervisor} onChange={handleChange} />
-                            {errors.supervisor && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-                        <div className={styles.field}>
-                            <label>Clase Mantenimiento</label>
-                            <input name="claseMtto" value={form.claseMtto} onChange={handleChange} />
-                        </div>
-
-                        <div className={styles.field}>
-                            <label>Contacto Supervisor</label>
-                            <input name="contactoSupervisor" value={form.contactoSupervisor} onChange={handleChange} />
-                        </div>
-                        <div className={styles.field}>
-                            <label>Tipo Mantenimiento</label>
-                            <input name="tipoMtto" value={form.tipoMtto} onChange={handleChange} />
-                        </div>
-
-                        <div className={styles.field}>
-                            <label>Fecha inicio<span>*</span></label>
-                            <input type="date" name="fechaInicio" value={form.fechaInicio} onChange={handleChange} />
-                            {errors.fechaInicio && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-                        <div className={styles.field}>
-                            <label>Fecha fin</label>
-                            <input type="date" name="fechaFin" value={form.fechaFin} onChange={handleChange} />
-                        </div>
-
-                        <div className={styles.field}>
-                            <label>Hora inicio<span>*</span></label>
-                            <input type="time" name="horaInicio" value={form.horaInicio} onChange={handleChange} />
-                            {errors.horaInicio && <p className={styles.error}>Este campo es obligatorio</p>}
-                        </div>
-                        <div className={styles.field}>
-                            <label>Hora fin</label>
-                            <input type="time" name="horaFin" value={form.horaFin} onChange={handleChange} />
-                        </div>
-
                         <div className={styles.fieldFull}>
-                            <label>Descripción Orden Trabajo<span>*</span></label>
+                            <label>Trabajo solicitado<span>*</span></label>
                             <textarea
-                                name="descripcionOrden"
-                                value={form.descripcionOrden}
+                                name="trabajoSolicitado"
+                                value={form.trabajoSolicitado}
                                 onChange={handleChange}
                                 rows={3}
                             />
-                            {errors.descripcionOrden && <p className={styles.error}>Este campo es obligatorio</p>}
+                            {errors.trabajoSolicitado && <p className={styles.error}>Este campo es obligatorio</p>}
                         </div>
-                    </div>
-                </section>
-
-                <hr className={styles.divider} />
-
-                {/* ==== Trabajo Realizado ==== */}
-                <section className={styles.section}>
-                    <h2 className={styles.sectionTitle}>Trabajo Realizado</h2>
-                    <div className={styles.gridFull}>
-                        {['trabajoSolicitado','causaFalla','analisisFalla','detalleTrabajo','repuestos','personalApoyo','observaciones'].map((key) => (
-                            <div key={key} className={styles.fieldFull}>
-                                <label>
-                                    {key === 'trabajoSolicitado' ? 'Trabajo solicitado*' :
-                                        key === 'causaFalla'       ? 'Causa de la falla*' :
-                                            key === 'analisisFalla'    ? 'Análisis de la falla*' :
-                                                key === 'detalleTrabajo'   ? 'Detalle trabajo realizado*' :
-                                                    key === 'repuestos'        ? 'Repuestos utilizados*' :
-                                                        key === 'personalApoyo'    ? 'Personal de apoyo' :
-                                                            'Observaciones'}
-                                    {['trabajoSolicitado','causaFalla','analisisFalla','detalleTrabajo','repuestos'].includes(key) && <span>*</span>}
-                                </label>
-                                <textarea
-                                    name={key}
-                                    value={form[key as keyof typeof form]}
-                                    onChange={handleChange}
-                                    rows={2}
-                                />
-                                {errors[key] && <p className={styles.error}>Este campo es obligatorio</p>}
-                            </div>
-                        ))}
                     </div>
                 </section>
 
