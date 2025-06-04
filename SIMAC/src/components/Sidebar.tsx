@@ -1,20 +1,38 @@
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import NewOrderModal from '../views/OrderView/NewOrderModal.tsx';
 import  { NavLink } from 'react-router-dom';
 import styles from '../styles/Sidebar.module.css';
 
 const Sidebar = () => {
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+
+    const handleConfirm = (data: any) => {
+        navigate('/order/create', { state: data });
+    };
+
     return (
         <aside className={styles.sidebar}>
             <nav>
                 <ul className={styles.navList}>
                     <li>
                         <NavLink
-                            to="/ordenes"
+                            to="/order/received"
                             className={({ isActive }) =>
                                 isActive ? `${styles.link} ${styles.active}` : styles.link
                             }
                         >
                             Órdenes de Trabajo
                         </NavLink>
+                    </li>
+                    <li>
+                        <button
+                            className={`${styles.subLink} ${styles.buttonLink}`}
+                            onClick={() => setShowModal(true)}
+                        >   <img src="/add.png" alt="addNew" className={styles.img} />
+                            Nuevo
+                        </button>
                     </li>
                     <li>
                         <NavLink
@@ -108,6 +126,12 @@ const Sidebar = () => {
                     </li>
                 </ul>
             </nav>
+
+            <NewOrderModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleConfirm}
+            />
         </aside>
     );
 };
