@@ -1,23 +1,32 @@
-import styles from '../styles/TechnicianView.module.css';
+import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import {useNavigate} from "react-router-dom";
 
-const mockTechnicians = [
+const mockEquipment = [
     { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacraga", Marca: "Catarpiller", Modelo: "GP35NM5", Chasis: "AT13H50133" },
+    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
     { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacraga", Marca: "Catarpiller", Modelo: "GP35NM5", Chasis: "AT13H50133" },
+    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
     { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacraga", Marca: "Catarpiller", Modelo: "GP35NM5", Chasis: "AT13H50133" },
+    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
     { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacraga", Marca: "Catarpiller", Modelo: "GP35NM5", Chasis: "AT13H50133" },
+    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
 ];
 
-const TechnicianView = () => {
+const EquipmentListView = () => {
+    const navigate = useNavigate();
+
+    const handleCreateClick = () => {
+        navigate('/equipment/create');
+    };
+
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Lista de equipos</h2>
+            <h2 className={styles.title}>EQUIPOS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton}>Crear Nuevo</button>
+                <button className={styles.createButton} onClick={handleCreateClick}>
+                    Crear Nuevo
+                </button>
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>
@@ -33,7 +42,7 @@ const TechnicianView = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {mockTechnicians.map((tech, index) => (
+                    {mockEquipment.map((tech, index) => (
                         <tr key={index}>
                             <td>{tech.Código}</td>
                             <td>{tech.Nombre}</td>
@@ -55,4 +64,4 @@ const TechnicianView = () => {
     );
 };
 
-export default TechnicianView;
+export default EquipmentListView;
