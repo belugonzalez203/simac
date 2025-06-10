@@ -17,8 +17,8 @@ public class SparePart {
     private String id_spare_part;
 
     @Column(name = "name_spare_part", nullable = false, length = 50)
-    private String nombre_spare_part;
+    private String name_spare_part;
 
-    @Column(name = "stock_spare_part)
-    private Integer existencia_spare_part;
+    @Column(name = "stock_spare_part")
+    private Integer stock_spare_part;
 }

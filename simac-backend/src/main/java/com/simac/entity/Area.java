@@ -1,12 +1,11 @@
 package com.simac.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "Area")
+@Data
 public class Area {
 
     @Id
@@ -17,43 +16,9 @@ public class Area {
     private String area;
 
     @Column(name = "in_charge", length = 30)
-    private String responsable;
+    private String inCharge;
 
     @Column(name = "contact", length = 8)
-    private String contacto;
-
-    // Getters y setters
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getInCharge() {
-        return in_charge;
-    }
-
-    public void setInCharge(String in_charge) {
-        this.in_charge = in_charge;
-    }
-
-    public String getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
-    }
+    private String contact;
 }
 

@@ -1,60 +1,54 @@
 package com.simac.controller;
 
+import com.simac.dto.AreaDto;
 import com.simac.entity.Area;
+import com.simac.mapper.AreaMapper;
 import com.simac.service.AreaService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/areas")
-@CrossOrigin(origins = "*") // Permite peticiones desde el frontend local u otras fuentes
 public class AreaController {
 
     private final AreaService areaService;
+    private final AreaMapper areaMapper;
 
-    public AreaController(AreaService areaService) {
+    public AreaController(AreaService areaService, AreaMapper areaMapper) {
         this.areaService = areaService;
+        this.areaMapper = areaMapper;
     }
 
     @GetMapping
-    public List<Area> getAllAreas() {
-        return areaService.findAll();
+    public List<AreaDto> getAllAreas() {
+        return areaService.findAll().stream()
+                .map(areaMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Area> getAreaById(@PathVariable String id) {
+    public AreaDto getAreaById(@PathVariable String id) {
         return areaService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new RuntimeException("Area not found with id: " + id));
     }
 
     @PostMapping
-    public ResponseEntity<Area> createArea(@RequestBody Area area) {
-        Area saved = areaService.save(area);
-        return ResponseEntity.ok(saved);
+    public AreaDto createArea(@RequestBody AreaDto dto) {
+        Area created = areaService.save(areaMapper.toEntity(dto));
+        return areaMapper.toDto(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Area> updateArea(@PathVariable String id, @RequestBody Area updatedArea) {
-        return areaService.findById(id)
-                .map(existing -> {
-                    existing.setArea(updatedArea.getArea());
-                    existing.setResponsable(updatedArea.getResponsable());
-                    existing.setContacto(updatedArea.getContacto());
-                    return ResponseEntity.ok(areaService.save(existing));
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public AreaDto updateArea(@PathVariable String id, @RequestBody AreaDto dto) {
+        Area updated = areaMapper.toEntity(dto);
+        updated.setId(id);
+        return areaMapper.toDto(areaService.update(updated));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteArea(@PathVariable String id) {
-        if (areaService.findById(id).isPresent()) {
-            areaService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public void deleteArea(@PathVariable String id) {
+        areaService.delete(id);
     }
 }

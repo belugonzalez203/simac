@@ -1,13 +1,14 @@
 package com.simac.service;
 
-import com.simac.entity.Area;
+import com.simac.dto.AreaDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AreaService {
-    List<Area> findAll();
-    Optional<Area> findById(String id);
-    Area save(Area area);
-    void deleteById(String id);
+    List<AreaDto> findAll();
+    Optional<AreaDto> findById(String id);
+    AreaDto save(AreaDto dto);
+    AreaDto update(AreaDto dto);
+    void delete(String id);
 }
