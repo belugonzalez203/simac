@@ -1,24 +1,32 @@
 import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const mockSpareParts = [
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-    { Código: "W7-3/4-S", Nombre: "Filtro de aceite de motor W7 MULT 3/4-S", Existencia: "20" },
-];
+interface spareParts {
+  id_spare_part: string;
+  name_spare_part: string;
+  stock_spare_part: string;
+}
 
-const SparePartsView = () => {
-    const navigate = useNavigate();
+function SparePartsView () {
+    const [spareParts, setSpareParts] = useState<spareParts[]>([]);
 
     const handleCreateClick = () => {
         navigate('/spareParts/create');
     };
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/sparePart/')
+            .then(response => {
+                console.log('Datos recibidos del backend:', response.data.data);
+                setSpareParts(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching areas:', error);
+            });
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -40,11 +48,11 @@ const SparePartsView = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {mockSpareParts.map((tech, index) => (
-                        <tr key={index}>
-                            <td>{tech.Código}</td>
-                            <td>{tech.Nombre}</td>
-                            <td>{tech.Existencia}</td>
+                    {spareParts.map((sp) => (
+                        <tr key={sp.id_spare_part}>
+                            <td>{sp.id_spare_part}</td>
+                            <td>{sp.name_spare_part}</td>
+                            <td>{sp.stock_spare_part}</td>
                             <td className={styles.iconCell}>
                                 <FaEdit className={styles.editIcon} />
                             </td>

@@ -1,24 +1,35 @@
 import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const mockAreas = [
-    { Código: "BARB", Área: "Molienda de barbotina", Responsable: "Julio Suarez", Contacto: "78945612" },
-    { Código: "COM", Área: "Comercialización", Responsable: "Mario Perez", Contacto: "78945612" },
-    { Código: "PROD", Área: "Producción", Responsable: "Ramiro Veizaga", Contacto: "78945612" },
-    { Código: "ESM", Área: "Molienda de esmaltes", Responsable: "Eduardo Ferrer", Contacto: "78945612" },
-    { Código: "EQP", Área: "Renovación de equipos", Responsable: "Pedro Molina", Contacto: "78945612"},
-    { Código: "PRD-2", Área: "Producción", Responsable: "Lucio Gomez", Contacto: "78945612" },
-    { Código: "COM-EX", Área: "Comercialización", Responsable: "Fernando Sejas", Contacto: "78945612" },
-    { Código: "ESM-2", Área: "Molienda de esmaltes", Responsable: "Ivar Mamani", Contacto: "78945612" },
-];
+interface Area {
+  id_area: string;
+  name_area: string;
+  in_charge: string;
+  contact_number_area: string;
+}
 
-const AreaView = () => {
+function AreaView () {
     const navigate = useNavigate();
 
     const handleCreateClick = () => {
         navigate('/area/create');
     };
+
+    const [areas, setAreas] = useState<Area[]>([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/area/')
+            .then(response => {
+                console.log('Datos recibidos del backend:', response.data.data);
+                setAreas(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching areas:', error);
+            });
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -41,12 +52,12 @@ const AreaView = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {mockAreas.map((tech, index) => (
-                        <tr key={index}>
-                            <td>{tech.Código}</td>
-                            <td>{tech.Área}</td>
-                            <td>{tech.Responsable}</td>
-                            <td>{tech.Contacto}</td>
+                    {areas.map((area) => (
+                        <tr key={area.id_area}>
+                            <td>{area.id_area}</td>
+                            <td>{area.name_area}</td>
+                            <td>{area.in_charge}</td>
+                            <td>{area.contact_number_area}</td>
                             <td className={styles.iconCell}>
                                 <FaEdit className={styles.editIcon} />
                             </td>
