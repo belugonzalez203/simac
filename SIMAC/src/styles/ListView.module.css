@@ -79,3 +79,25 @@
     cursor: pointer;
     font-size: 1.1rem;
 }
+
+.img {
+    height: 20px;
+    padding: 0 6px;
+    vertical-align: middle;
+}
+
+.buttonLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s ease;
+}
+
+.buttonLink:hover {
+    transform: scale(1.1);
+}
