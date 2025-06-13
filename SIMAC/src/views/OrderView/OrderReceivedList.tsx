@@ -1,21 +1,20 @@
 import styles from '../../styles/ListView.module.css';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import {useNavigate} from "react-router-dom";
 
 const mockTechnicians = [
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
-    { Equipo: 'Montacarga MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
+    { Orden: '1750', Equipo: 'MC-19', FechaEntrega: '15/06/2025', ClaseMant: 'Correctivo', TipoMant: 'Mecanico', Prioridad: 'Alta' },
 ];
 
-const TechnicianView = () => {
+const OrderReceivedList = () => {
     const navigate = useNavigate();
 
     const handleCreateClick = () => {
@@ -34,29 +33,42 @@ const TechnicianView = () => {
                 <table className={styles.table}>
                     <thead>
                     <tr>
+                        <th>Orden</th>
                         <th>Equipo</th>
-                        <th>Fecha entrega</th>
-                        <th>Clase Mantenimiento</th>
-                        <th>Tipo Mantenimiento</th>
+                        <th>Entrega</th>
+                        <th>Clase Mant</th>
+                        <th>Tipo Mant</th>
                         <th>Prioridad</th>
                         <th>Ver mas</th>
-                        <th>Ejecutar orden</th>
+                        <th>Ejecutar</th>
                     </tr>
                     </thead>
                     <tbody>
                     {mockTechnicians.map((tech, index) => (
                         <tr key={index}>
+                            <td>{tech.Orden}</td>
                             <td>{tech.Equipo}</td>
                             <td>{tech.FechaEntrega}</td>
                             <td>{tech.ClaseMant}</td>
                             <td>{tech.TipoMant}</td>
                             <td>{tech.Prioridad}</td>
                             <td className={styles.iconCell}>
-                                <FaEdit className={styles.editIcon} />
+                                <button
+                                    className={`${styles.subLink} ${styles.buttonLink}`}
+                                    onClick={() => navigate(`/workorder/${index}`)} // ejemplo para ver más
+                                >
+                                    <img src="/seeMore.png" alt="seeMore" className={styles.img} />
+                                </button>
                             </td>
                             <td className={styles.iconCell}>
-                                <FaTrashAlt className={styles.deleteIcon} />
+                                <button
+                                    className={styles.buttonLink}
+                                    onClick={() => navigate(`/workorder/${index}/execute`)} // ejemplo para ejecutar orden
+                                >
+                                    <img src="/notes.png" alt="executeOrder" className={styles.img} />
+                                </button>
                             </td>
+
                         </tr>
                     ))}
                     </tbody>
@@ -66,4 +78,4 @@ const TechnicianView = () => {
     );
 };
 
-export default TechnicianView;
+export default OrderReceivedList;
