@@ -9,9 +9,8 @@ import CreateEquipmentView from "./views/EquipmentView/CreateEquipmentView.tsx";
 import CreateSparePartsView from "./views/SparePartsView/CreateSparePartsView.tsx";
 import CreateAreaView from "./views/AreaView/CreateAreaView.tsx";
 import CreateTechnicianView from "./views/TechnicianView/CreateTechnicianView.tsx";
-import CreateOrderView from "./views/OrderView/CreateOrderView.tsx";
-import OrderReceivedView from "./views/OrderView/OrderReceivedView.tsx"
-import OrderReceivedList from "./views/OrderView/OrderReceivedList.tsx"
+import ViewOrderReceived from "./views/OrderView/ViewOrderReceived.tsx";
+import OrderReceivedList from "./views/OrderView/ListOrderReceived.tsx"
 
 
 const App = () => {
@@ -22,18 +21,13 @@ const App = () => {
                 <Route path="/equipos" element={<EquipmentView />} />
                 <Route path="/areas" element={<AreaView />} />
                 <Route path="/repuestos" element={<SparePartsView />} />
-
-                {/*<Route path="/ordenes" element={<OrdenesView />} />
-                <Route path="/horometros" element={<HorometrosView />} />
-                {/* Ruta por defecto */}
                 <Route path="*" element={<TechnicianView />} />
                 <Route path="/equipment/create" element={<CreateEquipmentView />} />
                 <Route path="/area/create" element={<CreateAreaView />} />
                 <Route path="/spareParts/create" element={<CreateSparePartsView />} />
                 <Route path="/technician/create" element={<CreateTechnicianView />} />
-                <Route path="/order/create" element={<CreateOrderView />} />
-                <Route path="/order2/received" element={<OrderReceivedView />} />
-                <Route path="/order/received" element={<OrderReceivedList />} />
+                <Route path="/order/received" element={<ViewOrderReceived />} />
+                <Route path="/order/receivedList" element={<OrderReceivedList />} />
             </Routes>
         </MainLayout>
     );
@@ -41,12 +35,3 @@ const App = () => {
 }
 
 export default App;
-
-/**
- *
- *  return (
- *         <MainLayout>
- *             <TechnicianView />
- *         </MainLayout>
- *     );
- */

@@ -25,9 +25,7 @@ const OrderReceivedList = () => {
         <div className={styles.container}>
             <h2 className={styles.title}>ÓRDENES RECIBIDAS</h2>
             <div className={styles.actions}>
-                <button className={styles.createButton} onClick={handleCreateClick}>
-                    Crear Nuevo
-                </button>
+                
             </div>
             <div className={styles.tableWrapper}>
                 <table className={styles.table}>

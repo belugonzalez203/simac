@@ -1,19 +1,33 @@
 import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const mockEquipment = [
-    { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
-    { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
-    { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
-    { Código: "MC-10", Nombre: "Montacarga", Marca: "HELI", Modelo: "CPQY25-RC1", Chasis: "AT13H50133" },
-    { Código: "MC-18", Nombre: "Montacarga", Marca: "CATERPILLAR", Modelo: "GP35NM5", Chasis: "AT13H50133" },
-];
+interface Equipment {
+  id_equip: number;
+  code_equip: string;
+  name_equip: string;
+  brand_equip: string;
+  model_equip: string;
+  chassis_equip: string;
+  name_area: string;
+}
+  
+function EquipmentListView() {
+    const [equipments, setEquipments] = useState<Equipment[]>([]);
 
-const EquipmentListView = () => {
+    useEffect(() => {
+        axios.get('http://localhost:3002/equipment/')
+            .then(response => {
+                console.log('Datos recibidos del backend:', response.data.data);
+                setEquipments(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching areas:', error);
+            });
+    }, []);
+
     const navigate = useNavigate();
 
     const handleCreateClick = () => {
@@ -37,18 +51,20 @@ const EquipmentListView = () => {
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Chasis</th>
+                        <th>Área</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {mockEquipment.map((tech, index) => (
-                        <tr key={index}>
-                            <td>{tech.Código}</td>
-                            <td>{tech.Nombre}</td>
-                            <td>{tech.Marca}</td>
-                            <td>{tech.Modelo}</td>
-                            <td>{tech.Chasis}</td>
+                    {equipments.map((equip) => (
+                        <tr key={equip.id_equip}>
+                            <td>{equip.code_equip}</td>
+                            <td>{equip.name_equip}</td>
+                            <td>{equip.brand_equip}</td>
+                            <td>{equip.model_equip}</td>
+                            <td>{equip.chassis_equip}</td>
+                            <td>{equip.name_area}</td>
                             <td className={styles.iconCell}>
                                 <FaEdit className={styles.editIcon} />
                             </td>

@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <ul className={styles.navList}>
                     <li>
                         <NavLink
-                            to="/order/received"
+                            to="/order/receivedList"
                             className={({ isActive }) =>
                                 isActive ? `${styles.link} ${styles.active}` : styles.link
                             }

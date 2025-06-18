@@ -1,6 +1,10 @@
 import styles from '../../styles/ListView.module.css';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
 
 const mockTechnicians = [
     { Código: 1, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Molienda de esmaltes' },
@@ -15,7 +19,19 @@ const mockTechnicians = [
     { Código: 10, Nombre: 'Walter Veizaga', Contacto: '74185236', Área: 'Comercialización' },
 ];
 
-const TechnicianView = () => {
+function TechnicianView(){
+    const [technicians, setTechnicians] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/technician')
+            .then(response => {
+                setTechnicians(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching areas:', error);
+            });
+    }, []);
+
     const navigate = useNavigate();
 
     const handleCreateClick = () => {
